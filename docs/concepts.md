@@ -119,6 +119,7 @@ The strategy document explains which of these we run and where.
 | Cold start included in results | Inflated latency at the start | Warm-up stage, measure steady state |
 | Very short runs | Noise dominates | Enough duration for stable percentiles |
 | Thresholds set after the run | Results are rationalized | Define criteria first |
+| Expected 4xx responses counted as failures | Failure rate inflated, thresholds fail on correct behavior | Declare expected statuses per request with `responseCallback: http.expectedStatuses(...)` |
 | Testing a public service at high load | Harms others, risks an IP block | Limit public tests to light load |
 
 ## 7. k6 Concepts Used in This Project

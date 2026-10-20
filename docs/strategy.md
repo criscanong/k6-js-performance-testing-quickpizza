@@ -103,7 +103,8 @@ Load models:
 
 A threshold decides whether a run passes or fails. A check only measures and records.
 
-- **Global:** `http_req_failed < 1%` and `checks > 99%`.
+- **Global:** `checks > 99%`, and `http_req_failed < 1%` on requests that were expected to succeed.
+- **Expected errors:** k6 counts any status of 400 or higher as a failed request by default. Error cases a test expects (for example, a duplicate registration returning 400) must declare their expected status on that request with `responseCallback: http.expectedStatuses(400)`. Otherwise they inflate the failure rate and make a correct system look broken.
 - **Per endpoint:** latency thresholds by `tag name`, so a slow endpoint is not hidden behind the overall average.
 - **Baseline-driven:** initial values are starting points. We measure first, then adjust, and the results go into `docs/baseline.md`.
 
